@@ -1,16 +1,3 @@
---------------------------------------------------
---      ____  ____ _____                        --
---     |    \|  _ )_   _|___ ____   __  __      --
---     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
---     |____/|____/ |_|\____/\_____|_/\/\_|     --
---                                              --
---------------------------------------------------
---                                              --
---       Developers: @Josepdal & @MaSkAoS       --
---     Support: @Skneos,  @iicc1 & @serx666     --
---                                              --
---------------------------------------------------
-
 do
 
 local function index_gban(user_id)
@@ -435,7 +422,7 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'unban' then
         if permissions(msg.from.id, msg.to.id, "unban") then
@@ -464,7 +451,7 @@ local function run(msg, matches)
                 return 'ℹ️ '..lang_text(chat_id, 'unbanUser:1')..' '..matches[2]..' '..lang_text(chat_id, 'unbanUser:2')
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'kick' then
         if permissions(msg.from.id, msg.to.id, "kick") then
@@ -491,9 +478,9 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
-    elseif matches[1] == 'gban' then
+    elseif matches[1] == 'banall' then
         if permissions(msg.from.id, msg.to.id, "gban") then
             chat_id = msg.to.id
             chat_type = msg.to.type
@@ -524,9 +511,9 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
-    elseif matches[1] == 'ungban' then
+    elseif matches[1] == 'unbanall' then
         if permissions(msg.from.id, msg.to.id, "ungban") then
         	chat_id = msg.to.id
         	chat_type = msg.to.type
@@ -559,7 +546,7 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'add' then
         if permissions(msg.from.id, msg.to.id, "add") then
@@ -586,7 +573,7 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'mute' then
         if permissions(msg.from.id, msg.to.id, "mute") then
@@ -613,7 +600,7 @@ local function run(msg, matches)
                 end
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'unmute' then
         if permissions(msg.from.id, msg.to.id, "unmute") then
@@ -640,16 +627,16 @@ local function run(msg, matches)
                 end
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'kickme' then
         local hash = 'kickme:'..msg.to.id
         if redis:get(hash) then
             if msg.to.type == 'chat' then
-                send_msg('chat#id'..msg.to.id, '👋🏽 '..lang_text(chat_id, 'kickmeBye')..' @'..msg.from.username..' ('..msg.from.id..').', ok_cb, true)
+                send_msg('chat#id'..msg.to.id, '♨️'..lang_text(chat_id, 'kickmeBye')..' @'..msg.from.username..' ('..msg.from.id..').', ok_cb, true)
                 chat_del_user('chat#id'..msg.to.id, 'user#id'..msg.from.id, ok_cb, false)
             elseif msg.to.type == 'channel' then
-                send_msg('channel#id'..msg.to.id, '👋🏽 '..lang_text(chat_id, 'kickmeBye')..' @'..msg.from.username..' ('..msg.from.id..').', ok_cb, true)
+                send_msg('channel#id'..msg.to.id, '♨️'..lang_text(chat_id, 'kickmeBye')..' @'..msg.from.username..' ('..msg.from.id..').', ok_cb, true)
                 channel_kick_user('channel#id'..msg.to.id, 'user#id'..msg.from.id, ok_cb, false)
             end
         end  
@@ -667,10 +654,10 @@ return {
         "^[!/#](kickme)$",
         "^[!/#](add) (.*)$",
         "^[!/#](add)$",
-        "^[!/#](gban) (.*)$",
-        "^[!/#](gban)$",
-        "^[!/#](ungban) (.*)$",
-        "^[!/#](ungban)$",
+        "^[!/#](banall) (.*)$",
+        "^[!/#](banall)$",
+        "^[!/#](unbanall) (.*)$",
+        "^[!/#](unbanall)$",
         '^[!/#](mute) (.*)$',
         '^[!/#](mute)$',
         '^[!/#](unmute) (.*)$',
