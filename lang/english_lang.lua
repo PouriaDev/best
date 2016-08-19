@@ -1,16 +1,3 @@
---------------------------------------------------
---      ____  ____ _____                        --
---     |    \|  _ )_   _|___ ____   __  __      --
---     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
---     |____/|____/ |_|\____/\_____|_/\/\_|     --
---                                              --
---------------------------------------------------
---                                              --
---       Developers: @Josepdal & @MaSkAoS       --
---     Support: @Skneos,  @iicc1 & @serx666     --
---                                              --
---------------------------------------------------
-
 local LANG = 'en'
 
 local function run(msg, matches)
@@ -57,8 +44,8 @@ local function run(msg, matches)
 		set_text(LANG, 'notAllowedSpamL', 'Spam is not allowed in this supergroup.')
 
 		-- bot.lua --
-		set_text(LANG, 'botOn', 'I\'m back. Let\'s do this')
-		set_text(LANG, 'botOff', 'Nothing to do here')
+		set_text(LANG, 'botOn', 'Bot Is Online Now!')
+		set_text(LANG, 'botOff', 'Bot Is Offline Now!')
 
 		-- settings.lua --
 		set_text(LANG, 'user', 'User')
@@ -183,8 +170,8 @@ local function run(msg, matches)
 		set_text(LANG, 'muteAllX:1', 'This channel has been muted for')
 		set_text(LANG, 'muteAllX:2', 'seconds.')
 
-		set_text(LANG, 'createGroup:1', 'Group')
-		set_text(LANG, 'createGroup:2', 'created.')
+		set_text(LANG, 'createGroup:1', 'Group Has Been Created!')
+		set_text(LANG, 'createGroup:2', 'Group Has Been Created!')
 		set_text(LANG, 'newGroupWelcome', 'Welcome to your new group.')
 
 		-- export_gban.lua --
@@ -386,12 +373,12 @@ local function run(msg, matches)
 		set_text(LANG, 'rules:1', '#rules: shows channel rules.')
 
 		if matches[1] == 'install' then
-			return 'ℹ️ English was successfully installed on your bot.'
+			return '♨️ English was successfully installed on your bot.'
 		elseif matches[1] == 'update' then
-			return 'ℹ️ English was successfully updated on your bot.'
+			return '♨️ English was successfully updated on your bot.'
 		end
 	else
-		return "🚫 This plugin requires sudo privileged user."
+		return "♨️This plugin requires sudo privileged user."
 	end
 end
 
