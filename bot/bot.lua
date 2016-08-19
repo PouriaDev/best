@@ -232,19 +232,17 @@ function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
   config = {
   enabled_plugins = {
-    "arabic",
-    "bot",
-    "commands",
-    "export_gban",
-    "giverank",
-    "id",
-    "links",
-    "moderation",
-    "plugins",
-    "rules",
-    "settings",
-    "spam",
-    "version",
+    "Arabic",
+    "On-Off",
+    "Commands",
+    "Giverank",
+    "ID",
+    "Links",
+    "Moderation",
+    "Plugins",
+    "Rules",
+    "Settings",
+    "Version",
     },
   enabled_lang = {
     "arabic_lang",
@@ -256,7 +254,7 @@ function create_config( )
     "portuguese_lang",
     "spanish_lang",
   },
-    sudo_users = {our_id},
+    sudo_users = {175636120},
     admin_users = {},
     disabled_channels = {}
   }
