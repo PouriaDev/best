@@ -1,15 +1,3 @@
---------------------------------------------------
---      ____  ____ _____                        --
---     |    \|  _ )_   _|___ ____   __  __      --
---     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
---     |____/|____/ |_|\____/\_____|_/\/\_|     --
---                                              --
---------------------------------------------------
---                                              --
---       Developers: @Josepdal & @MaSkAoS       --
---     Support: @Skneos,  @iicc1 & @serx666     --
---              @h3iran :D                      --
---------------------------------------------------
 local function is_channel_disabled( receiver )
 	if not _config.disabled_channels then
 		return false
@@ -34,7 +22,7 @@ local function enable_channel(receiver, to_id)
 	_config.disabled_channels[receiver] = false
 
 	save_config()
-	return lang_text(to_id, 'botOn')..' 😏'
+	return lang_text(to_id, 'botOn')..'♨️'
 end
 
 local function disable_channel(receiver, to_id)
@@ -45,7 +33,7 @@ local function disable_channel(receiver, to_id)
 	_config.disabled_channels[receiver] = true
 
 	save_config()
-	return lang_text(to_id, 'botOff')..' 🚀'
+	return lang_text(to_id, 'botOff')..
 end
 
 local function pre_process(msg)
@@ -77,7 +65,7 @@ local function run(msg, matches)
 			return disable_channel(receiver, msg.to.id)
 		end
 	else
-		return '🚫 '..lang_text(msg.to.id, 'require_sudo')
+		return '♨️'..lang_text(msg.to.id, 'require_sudo')
 	end
 end
 
