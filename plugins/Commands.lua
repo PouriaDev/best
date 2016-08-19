@@ -1,19 +1,6 @@
---------------------------------------------------
---      ____  ____ _____                        --
---     |    \|  _ )_   _|___ ____   __  __      --
---     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
---     |____/|____/ |_|\____/\_____|_/\/\_|     --
---                                              --
---------------------------------------------------
---                                              --
---       Developers: @Josepdal & @MaSkAoS       --
---     Support: @Skneos,  @iicc1 & @serx666     --
---                                              --
---------------------------------------------------
-
 do
     local function run(msg, matches)
-        text = '#⃣ '..lang_text(msg.to.id, 'commandsT')..':\n'
+        text = '♨️'..lang_text(msg.to.id, 'commandsT')..':\n'
         local space = '\n'
         if matches[1] == 'commands' and not matches[2] then
             if permissions(msg.from.id, msg.to.id, "mod_commands") then
@@ -48,9 +35,9 @@ do
                         return text
                     end
                 end
-                return 'ℹ️ '..lang_text(msg.to.id, 'errorNoPlug')
+                return '♨️'..lang_text(msg.to.id, 'errorNoPlug')
             else
-                return '🚫 '..lang_text(msg.to.id, 'require_mod')
+                return '♨️'..lang_text(msg.to.id, 'require_mod')
             end
         end
         return text
