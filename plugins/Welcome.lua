@@ -1,8 +1,3 @@
-------------------------------------------
---  DBTeam DBTeam DBTeam DBTeam DBTeam ---
---  Welcome by @xxdamage               ---
--- multilanguage and fix by@Jarriz     ---
-------------------------------------------
 function chat_new_user(msg)
    local name = msg.action.user.first_name:gsub('_', ' ')
     local id = msg.action.user.id
@@ -14,7 +9,7 @@ function chat_new_user(msg)
    local message = redis:get('welcome:'..msg.to.id)
    local custom_message = message:gsub('$id', msg.action.user.id):gsub('$name', msg.action.user.first_name):gsub('$user', '@'..msg.action.user.username)
    if not message then
-      return '😀 ' ..lang_text(msg.to.id, 'welcome1') ..name.. '! ' ..lang_text(msg.to.id, 'welcome2') ..chat..'!\n🆔 ' ..id
+      return '♨️' ..lang_text(msg.to.id, 'welcome1') ..name.. '! ' ..lang_text(msg.to.id, 'welcome2') ..chat..'!\n♨️ ' ..id
    end
    send_msg(receiver, custom_message, ok_cb, false)
 end
@@ -62,7 +57,7 @@ local function run(msg, matches)
 		end
 		message = redis:get('welcome:'..msg.to.id)
 		if not message then
-         return '😀' ..lang_text(msg.to.id, 'welcome1') ..name.. '!' ..lang_text(msg.to.id, 'welcome2') ..chat..'!\n🆔 ' ..id
+         return '♨️' ..lang_text(msg.to.id, 'welcome1') ..name.. '!' ..lang_text(msg.to.id, 'welcome2') ..chat..'!\n♨️ ' ..id
       end
 		send_msg(receiver, message, ok_cb, false)
 	elseif matches[1] == "chat_del_user" then
@@ -75,17 +70,17 @@ local function run(msg, matches)
 		end
 		local message = redis:get('bye:'..msg.to.id)
 		if not message then
-         return '😀 ' ..lang_text(msg.to.id, 'bye1') ..name.. '!' ..lang_text(msg.to.id, 'bye2')
+         return '♨️' ..lang_text(msg.to.id, 'bye1') ..name.. '!' ..lang_text(msg.to.id, 'bye2')
       end
 		send_msg(receiver, message, ok_cb, false)
    elseif matches[1] == 'setwelcome' then
 		if not permissions(msg.from.id, msg.to.id, "welcome") then
-			return '🚫 '..lang_text(msg.to.id, 'require_mod')
+			return '♨️'..lang_text(msg.to.id, 'require_mod')
 		end
       print(msg.to.id)
       local hash = 'welcome:'..msg.to.id
       redis:set(hash, matches[2])
-      return '✅ ' ..lang_text(msg.to.id, 'welnew') .. ': \n'  ..matches[2]
+      return '♨️' ..lang_text(msg.to.id, 'welnew') .. ': \n'  ..matches[2]
    elseif matches[1] == 'getwelcome' then
       print(msg.to.id)
       local hash = 'welcome:'..msg.to.id
@@ -96,12 +91,12 @@ local function run(msg, matches)
       return wel
    elseif matches[1] == 'setbye' then
    if not permissions(msg.from.id, msg.to.id, "welcome") then
-			return ' 🚫'..lang_text(msg.to.id, 'require_mod')
+			return '♨️'..lang_text(msg.to.id, 'require_mod')
 		end
       print(msg.to.id)
       local hash = 'bye:'..msg.to.id
       redis:set(hash, matches[2])
-      return '✅ ' ..lang_text(msg.to.id, 'newbye') .. ':\n'..matches[2]
+      return '♨️' ..lang_text(msg.to.id, 'newbye') .. ':\n'..matches[2]
    elseif matches[1] == 'getbye' then
    if not permissions(msg.from.id, msg.to.id, "welcome") then
 			return ' 🚫'..lang_text(msg.to.id, 'require_mod')
@@ -122,21 +117,21 @@ local function run(msg, matches)
       return 'ℹ️ '..lang_text(msg.to.id, 'welon')
    elseif matches[1] == 'welcome off' then
    if not permissions(msg.from.id, msg.to.id, "welcome") then
-			return '🚫 '..lang_text(msg.to.id, 'require_mod')
+			return '♨️'..lang_text(msg.to.id, 'require_mod')
 		end
       local hash = 'wlcstatus:'..msg.to.id
       redis:set(hash, 'off')
       return 'ℹ️ '..lang_text(msg.to.id, 'weloff')
    elseif matches[1] == 'bye on' then
    if not permissions(msg.from.id, msg.to.id, "welcome") then
-			return ' 🚫'..lang_text(msg.to.id, 'require_mod')
+			return '♨️'..lang_text(msg.to.id, 'require_mod')
 		end
       local hash = 'byestatus:'..msg.to.id
       redis:set(hash, 'on')
       return 'ℹ️ '..lang_text(msg.to.id, 'byeon')
    elseif matches[1] == 'bye off' then
    if not permissions(msg.from.id, msg.to.id, "welcome") then
-			return ' 🚫'..lang_text(msg.to.id, 'require_mod')
+			return '♨️'..lang_text(msg.to.id, 'require_mod')
 		end
       local hash = 'byestatus:'..msg.to.id
       redis:set(hash, 'off')
