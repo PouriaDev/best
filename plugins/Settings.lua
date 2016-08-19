@@ -1,24 +1,9 @@
---------------------------------------------------
---      ____  ____ _____                        --
---     |    \|  _ )_   _|___ ____   __  __      --
---     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
---     |____/|____/ |_|\____/\_____|_/\/\_|     --
---                                              --
---------------------------------------------------
---                                              --
---       Developers: @Josepdal & @MaSkAoS       --
---     Support: @Skneos,  @iicc1 & @serx666     --
---                                              --
---    #creategroup by @lamjavid &  @Josepdal	--
---												--
---------------------------------------------------
-
 do
 
 local function create_group(msg, group_name)
     local group_creator = msg.from.print_name
     create_group_chat(group_creator, group_name, ok_cb, false)
-    return 'ℹ️ '..lang_text(msg.to.id, 'createGroup:1')..' "'..string.gsub(group_name, '_', ' ')..'" '..lang_text(msg.to.id, 'createGroup:2')
+    return '♨️'..lang_text(msg.to.id, 'createGroup:1')..' "'..string.gsub(group_name, '_', ' ')..'" '..lang_text(msg.to.id, 'createGroup:2')
 end
 
 local function remove_message(extra, success, result)
@@ -38,17 +23,17 @@ local function set_group_photo(msg, success, result)
 	elseif msg.to.type == 'chat' then
 		chat_set_photo(receiver, file, ok_cb, false)
 	end
-        return 'ℹ️ '..lang_text(msg.to.id, 'photoSaved')
+        return '♨️'..lang_text(msg.to.id, 'photoSaved')
     else
         print('Error downloading: '..msg.id)
-        return 'ℹ️ '..lang_text(msg.to.id, 'photoSaved')
+        return '♨️'..lang_text(msg.to.id, 'photoSaved')
     end
 end
 
 local function pre_process(msg)
     local hash = 'flood:max:'..msg.to.id
     if not redis:get(hash) then
-        floodMax = 5
+        floodMax = 50
     else
         floodMax = tonumber(redis:get(hash))
     end
@@ -493,10 +478,10 @@ local function run(msg, matches)
                 local hash = 'stickers:'..msg.to.id
                 if redis:get(hash) then
                     sStickers = noAllowed
-                    sStickersD = '🔹'
+                    sStickersD = '🔒'
                 else
                     sStickers = allowed
-                    sStickersD = '🔸'
+                    sStickersD = '🔓'
                 end
                 text = text..sStickersD..' '..lang_text(msg.to.id, 'stickers')..': '..sStickers..'\n'
 
@@ -504,10 +489,10 @@ local function run(msg, matches)
                 local hash = 'tgservices:'..msg.to.id
                 if redis:get(hash) then
                     tTgservices = noAllowed
-                    tTgservicesD = '🔹'
+                    tTgservicesD = '🔒'
                 else
                     tTgservices = allowed
-                    tTgservicesD = '🔸'
+                    tTgservicesD = '🔓'
                 end
                 text = text..tTgservicesD..' '..lang_text(msg.to.id, 'tgservices')..': '..tTgservices..'\n'
 
@@ -515,10 +500,10 @@ local function run(msg, matches)
                 local hash = 'links:'..msg.to.id
                 if redis:get(hash) then
                     sLink = noAllowed
-                    sLinkD = '🔹'
+                    sLinkD = '🔒'
                 else
                     sLink = allowed
-                    sLinkD = '🔸'
+                    sLinkD = '🔓'
                 end
                 text = text..sLinkD..' '..lang_text(msg.to.id, 'links')..': '..sLink..'\n'
 
@@ -526,10 +511,10 @@ local function run(msg, matches)
                 local hash = 'arabic:'..msg.to.id
                 if not redis:get(hash) then
                     sArabe = allowed
-                    sArabeD = '🔸'              
+                    sArabeD = '🔓'              
                 else
                     sArabe = noAllowed
-                    sArabeD = '🔹'
+                    sArabeD = '🔒'
                 end
                 text = text..sArabeD..' '..lang_text(msg.to.id, 'arabic')..': '..sArabe..'\n'
 
@@ -537,10 +522,10 @@ local function run(msg, matches)
                 local hash = 'antibot:'..msg.to.id
                 if not redis:get(hash) then
                     sBots = allowed
-                    sBotsD = '🔸'
+                    sBotsD = '🔓'
                 else
                     sBots = noAllowed
-                    sBotsD = '🔹'
+                    sBotsD = '🔒'
                 end
                 text = text..sBotsD..' '..lang_text(msg.to.id, 'bots')..': '..sBots..'\n'
                 
@@ -548,10 +533,10 @@ local function run(msg, matches)
                 local hash = 'gifs:'..msg.to.id
                 if redis:get(hash) then
                     sGif = noAllowed
-                    sGifD = '🔹'
+                    sGifD = '🔒'
                 else
                     sGif = allowed
-                    sGifD = '🔸'
+                    sGifD = '🔓'
                 end
                 text = text..sGifD..' '..lang_text(msg.to.id, 'gifs')..': '..sGif..'\n'
                 
@@ -559,10 +544,10 @@ local function run(msg, matches)
                 local hash = 'photo:'..msg.to.id
                 if redis:get(hash) then
                     sPhoto = noAllowed
-                    sPhotoD = '🔹'
+                    sPhotoD = '🔒'
                 else
                     sPhoto = allowed
-                    sPhotoD = '🔸'
+                    sPhotoD = '🔓'
                 end
                 text = text..sPhotoD..' '..lang_text(msg.to.id, 'photos')..': '..sPhoto..'\n'
 
@@ -570,10 +555,10 @@ local function run(msg, matches)
                 local hash = 'audio:'..msg.to.id
                 if redis:get(hash) then
                     sAudio = noAllowed
-                    sAudioD = '🔹'
+                    sAudioD = '🔒'
                 else
                     sAudio = allowed
-                    sAudioD = '🔸'
+                    sAudioD = '🔓'
                 end
                 text = text..sAudioD..' '..lang_text(msg.to.id, 'audios')..': '..sAudio..'\n'
 
@@ -581,10 +566,10 @@ local function run(msg, matches)
                 local hash = 'kickme:'..msg.to.id
                 if redis:get(hash) then
                     sKickme = allowed
-                    sKickmeD = '🔸'
+                    sKickmeD = '🔓'
                 else
                     sKickme = noAllowed
-                    sKickmeD = '🔹'
+                    sKickmeD = '🔒'
                 end
                 text = text..sKickmeD..' '..lang_text(msg.to.id, 'kickme')..': '..sKickme..'\n'
 
@@ -592,10 +577,10 @@ local function run(msg, matches)
                 local hash = 'spam:'..msg.to.id
                 if redis:get(hash) then
                     sSpam = noAllowed
-                    sSpamD = '🔹'
+                    sSpamD = '🔒'
                 else
                     sSpam = allowed
-                    sSpamD = '🔸'
+                    sSpamD = '🔓'
                 end
                 text = text..sSpamD..' '..lang_text(msg.to.id, 'spam')..': '..sSpam..'\n'
 
@@ -603,10 +588,10 @@ local function run(msg, matches)
                 local hash = 'setphoto:'..msg.to.id
                 if not redis:get(hash) then
                     sSPhoto = allowed
-                    sSPhotoD = '🔸'
+                    sSPhotoD = '🔓'
                 else
                     sSPhoto = noAllowed
-                    sSPhotoD = '🔹'
+                    sSPhotoD = '🔒'
                 end
                 text = text..sSPhotoD..' '..lang_text(msg.to.id, 'setphoto')..': '..sSPhoto..'\n'
 
@@ -614,10 +599,10 @@ local function run(msg, matches)
                 local hash = 'name:enabled:'..msg.to.id
                 if redis:get(hash) then
                     sName = noAllowed
-                    sNameD = '🔹'
+                    sNameD = '🔒'
                 else
                     sName = allowed
-                    sNameD = '🔸'
+                    sNameD = '🔓'
                 end
                 text = text..sNameD..' '..lang_text(msg.to.id, 'gName')..': '..sName..'\n'
 
@@ -625,10 +610,10 @@ local function run(msg, matches)
                 local hash = 'lockmember:'..msg.to.id
                 if redis:get(hash) then
                     sLock = noAllowed
-                    sLockD = '🔹'
+                    sLockD = '🔒'
                 else
                     sLock = allowed
-                    sLockD = '🔸'
+                    sLockD = '🔓'
                 end
                 text = text..sLockD..' lockmembers: '..sLock..'\n'
 
@@ -636,20 +621,20 @@ local function run(msg, matches)
                 local hash = 'anti-flood:'..msg.to.id
                 if redis:get(hash) then
                     sFlood = allowed
-                    sFloodD = '🔸'
+                    sFloodD = '🔓'
                 else
                     sFlood = noAllowed
-                    sFloodD = '🔹'
+                    sFloodD = '🔒'
                 end
                 text = text..sFloodD..' '..lang_text(msg.to.id, 'flood')..': '..sFlood..'\n'
 
                 local hash = 'langset:'..msg.to.id
                 if redis:get(hash) then
                     sLang = redis:get(hash)
-                    sLangD = '🔸'
+                    sLangD = '✅'
                 else
                     sLang = lang_text(msg.to.id, 'noSet')
-                    sLangD = '🔹'
+                    sLangD = '❌'
                 end
                 text = text..sLangD..' '..lang_text(msg.to.id, 'language')..': '..string.upper(sLang)..'\n'
 
@@ -667,7 +652,7 @@ local function run(msg, matches)
                     floodTime = redis:get(hash)
                 end
 
-                text = text..'🔺 '..lang_text(msg.to.id, 'mFlood')..': '..floodMax..'\n🔺 '..lang_text(msg.to.id, 'tFlood')..': '..floodTime..'\n'            
+                text = text..'♨️ '..lang_text(msg.to.id, 'mFlood')..': '..floodMax..'\n♨️ '..lang_text(msg.to.id, 'tFlood')..': '..floodTime..'\n'            
                 
                 --Send settings to group or supergroup
                 if msg.to.type == 'chat' then
@@ -678,7 +663,7 @@ local function run(msg, matches)
                 return
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'rem' then
         if permissions(msg.from.id, msg.to.id, "settings") then
@@ -688,7 +673,7 @@ local function run(msg, matches)
             end
             return
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'lang' then
         if permissions(msg.from.id, msg.to.id, "set_lang") then
@@ -696,7 +681,7 @@ local function run(msg, matches)
             redis:set(hash, matches[2])
             return lang_text(msg.to.id, 'langUpdated')..string.upper(matches[2])
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_sudo')
+            return '♨️'..lang_text(msg.to.id, 'require_sudo')
         end
     elseif matches[1] == 'setname' then
         if permissions(msg.from.id, msg.to.id, "settings") then
@@ -710,7 +695,7 @@ local function run(msg, matches)
             end
             return
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'setlink' then
         if permissions(msg.from.id, msg.to.id, "setlink") then
@@ -723,7 +708,7 @@ local function run(msg, matches)
             end
             return
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
     elseif matches[1] == 'newlink' then
         if permissions(msg.from.id, msg.to.id, "setlink") then
@@ -734,7 +719,7 @@ local function run(msg, matches)
     				redis:set(hash, result)
     			end
 	            if success == 0 then
-	                return send_large_msg(receiver, 'I can\'t create a newlink.', ok_cb, true)
+	                return send_large_msg(receiver, "I can't create a newlink.", ok_cb, true)
 	            end
     		end
     		if msg.to.type == 'chat' then
@@ -759,9 +744,9 @@ local function run(msg, matches)
             local linktext = redis:get(hash)
             if linktext then
                 if msg.to.type == 'chat' then
-                    send_msg('chat#id'..msg.to.id, '🌐 '..lang_text(msg.to.id, 'groupLink')..': '..linktext, ok_cb, true)
+                    send_msg('chat#id'..msg.to.id, '♨️'..lang_text(msg.to.id, 'groupLink')..': '..linktext, ok_cb, true)
                 elseif msg.to.type == 'channel' then
-                    send_msg('channel#id'..msg.to.id, '🌐 '..lang_text(msg.to.id, 'sGroupLink')..': '..linktext, ok_cb, true)
+                    send_msg('channel#id'..msg.to.id, '♨️'..lang_text(msg.to.id, 'sGroupLink')..': '..linktext, ok_cb, true)
                 end
             else
                 if msg.to.type == 'chat' then
@@ -772,7 +757,7 @@ local function run(msg, matches)
             end
             return
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
     elseif matches[1] == 'setphoto' then
         if permissions(msg.from.id, msg.to.id, "settings") then
@@ -796,35 +781,35 @@ local function run(msg, matches)
                     end
                 end
             else
-                return 'ℹ️ '..lang_text(msg.to.id, 'setPhotoError')
+                return '♨️'..lang_text(msg.to.id, 'setPhotoError')
             end
             return
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_mod')
+            return '♨️'..lang_text(msg.to.id, 'require_mod')
         end
-    elseif matches[1] == 'tosupergroup' then
+    elseif matches[1] == 'tosuper' then
         if msg.to.type == 'chat' then
             if permissions(msg.from.id, msg.to.id, "tosupergroup") then
                 chat_upgrade('chat#id'..msg.to.id, ok_cb, false)
                 return 'ℹ️ '..lang_text(msg.to.id, 'chatUpgrade')
             else
-                return '🚫 '..lang_text(msg.to.id, 'require_sudo')
+                return '♨️'..lang_text(msg.to.id, 'require_sudo')
             end
         else
-            return 'ℹ️ '..lang_text(msg.to.id, 'notInChann')
+            return '♨️'..lang_text(msg.to.id, 'notInChann')
         end
-    elseif matches[1] == 'setdescription' then
+    elseif matches[1] == 'setabout' then
         if permissions(msg.from.id, msg.to.id, "description") then
             local text = matches[2]
             local chat = 'channel#id'..msg.to.id
             if msg.to.type == 'channel' then
                 channel_set_about(chat, text, ok_cb, false)
-                return 'ℹ️ '..lang_text(msg.to.id, 'desChanged')
+                return '♨️'..lang_text(msg.to.id, 'desChanged')
             else
-                return 'ℹ️ '..lang_text(msg.to.id, 'desOnlyChannels')
+                return '♨️'..lang_text(msg.to.id, 'desOnlyChannels')
             end
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
     elseif matches[1] == 'muteall' and matches[2] then
     	if permissions(msg.from.id, msg.to.id, "muteall") then
@@ -832,25 +817,25 @@ local function run(msg, matches)
     		local hash = 'muteall:'..msg.to.id
     		redis:setex(hash, tonumber(matches[2]), true)
     		print(2)
-            return 'ℹ️ '..lang_text(msg.to.id, 'muteAllX:1')..' '..matches[2]..' '..lang_text(msg.to.id, 'muteAllX:2')
+            return '♨️'..lang_text(msg.to.id, 'muteAllX:1')..' '..matches[2]..' '..lang_text(msg.to.id, 'muteAllX:2')
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
     elseif matches[1] == 'muteall' then
     	if permissions(msg.from.id, msg.to.id, "muteall") then
     		local hash = 'muteall:'..msg.to.id
     		redis:set(hash, true)
-            return 'ℹ️ '..lang_text(msg.to.id, 'muteAll')
+            return '♨️'..lang_text(msg.to.id, 'muteAll')
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
     elseif matches[1] == 'unmuteall' then
     	if permissions(msg.from.id, msg.to.id, "muteall") then
     		local hash = 'muteall:'..msg.to.id
     		redis:del(hash)
-            return 'ℹ️ '..lang_text(msg.to.id, 'unmuteAll')
+            return '♨️'..lang_text(msg.to.id, 'unmuteAll')
         else
-            return '🚫 '..lang_text(msg.to.id, 'require_admin')
+            return '♨️'..lang_text(msg.to.id, 'require_admin')
         end
     elseif matches[1] == 'creategroup' and matches[2] then
 		if permissions(msg.from.id, msg.to.id, "creategroup") then
@@ -858,7 +843,7 @@ local function run(msg, matches)
 		    return create_group(msg, group_name)
 		end
     elseif matches[1] == 'chat_created' and msg.from.id == 0 then
-        return '🆕 '..lang_text(msg.to.id, 'newGroupWelcome')
+        return '♨️'..lang_text(msg.to.id, 'newGroupWelcome')
     end
 end
 
@@ -875,8 +860,8 @@ return {
         '^[!/#](unmuteall)$',
         '^[!/#](link)$',
         '^[!/#](newlink)$',
-        '^[!/#](tosupergroup)$',
-        '^[!/#](setdescription) (.*)$',
+        '^[!/#](tosuper)$',
+        '^[!/#](setabout) (.*)$',
         '^[!/#](setlink) (.*)$',
         '^[!/#](lang) (.*)$',
         '^[!/#](creategroup) (.*)$',
